@@ -20,6 +20,8 @@
  ;; If there is more than one, they won't work right.
  )
 
+(global-hl-line-mode)
+(save-place-mode 1)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -27,6 +29,8 @@
 
 (require 'use-package)
 (setq use-package-always-ensure t)
+
+(use-package which-key)
 
 (use-package alchemist
 )
