@@ -15,7 +15,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (solarized-theme pomodoro company-flx use-package helm powerline git-gutter helm-dash guide-key-tip rainbow-mode rainbow-delimiters helm-swoop dashboard god-mode helm-projectile helm-company helm-core highlight-indentation rvm robe grizzl rinari neotree projectile magit alchemist elixir-mode))))
+    (markdown-mode solarized-theme pomodoro company-flx use-package helm powerline git-gutter helm-dash guide-key-tip rainbow-mode rainbow-delimiters helm-swoop dashboard god-mode helm-projectile helm-company helm-core highlight-indentation rvm robe grizzl rinari neotree projectile magit alchemist elixir-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -33,7 +33,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(use-package which-key)
+(use-package which-key
+  :config
+  (which-key-mode)
+ )
 
 (use-package solarized-theme
   :config
@@ -97,10 +100,10 @@
 (use-package helm-projectile
   )
 
- (defun my-update-cursor ()
-(setq cursor-type (if (or god-local-mode buffer-read-only)
-                       'box
-                     'bar)))
+(defun update-hl-color ()
+  (set-face-inverse-video 'hl-line (if (or god-local-mode buffer-read-only)
+                       t
+		       nil)))
 
 
 (use-package god-mode
@@ -117,8 +120,8 @@
   ;;              (set-face-background 'mode-line (if limited-colors-p "black" "#0a2832"))
   ;;              (set-face-background 'mode-line-inactive (if limited-colors-p "black" "#0a2832")))))))
  
-  (add-hook 'god-mode-enabled-hook 'my-update-cursor)
-  (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+  (add-hook 'god-mode-enabled-hook 'update-hl-color)
+  (add-hook 'god-mode-disabled-hook 'update-hl-color)
   :bind
   ("ESC ESC" . god-mode-all)
 )
@@ -217,8 +220,8 @@
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
-  :init (setq markdown-command "multimarkdown"))
-
+  ;; :init (setq markdown-command "multimarkdown"))
+)
  (defun comment-or-uncomment-region-or-line ()
      "Comments or uncomments the region or the current line if there's no active region."
      (interactive)
