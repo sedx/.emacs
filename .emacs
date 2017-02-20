@@ -139,6 +139,8 @@
   (global-linum-mode)
  )
 
+(use-package neotree)
+
 (use-package projectile
   :init
   (setq projectile-enable-caching t
@@ -158,7 +160,7 @@
           (file-name (buffer-file-name)))
       (neotree-toggle)
       (if project-dir
-          (if (neo-global--window-exists-p)
+          (if (neotree-toggleo-global--window-exists-p)
               (progn
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
@@ -220,4 +222,5 @@
          (comment-or-uncomment-region beg end)
          (next-line)))
 
- (global-set-key (kbd "C-c /") 'comment-or-uncomment-region-or-line)
+(global-unset-key (kbd "M-/"))
+(global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
