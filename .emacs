@@ -15,7 +15,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode solarized-theme pomodoro company-flx use-package helm powerline git-gutter helm-dash guide-key-tip rainbow-mode rainbow-delimiters helm-swoop dashboard god-mode helm-projectile helm-company helm-core highlight-indentation rvm robe grizzl rinari neotree projectile magit alchemist elixir-mode))))
+    (chess markdown-mode solarized-theme pomodoro company-flx use-package helm powerline git-gutter helm-dash guide-key-tip rainbow-mode rainbow-delimiters helm-swoop dashboard god-mode helm-projectile helm-company helm-core highlight-indentation rvm robe grizzl rinari neotree projectile magit alchemist elixir-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -101,10 +101,8 @@
   )
 
 (defun update-hl-color ()
-  (set-face-inverse-video 'hl-line (if (or god-local-mode buffer-read-only)
-                       t
-		       nil)))
-
+  (set-face-inverse-video 'hl-line god-local-mode )
+)
 
 (use-package god-mode
   :init
@@ -234,3 +232,6 @@
 
 (global-unset-key (kbd "M-/"))
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
+
+(global-unset-key (kbd "C-s"))
+(global-set-key (kbd "C-s") 'helm-swoop)
