@@ -230,7 +230,12 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode))
   ;; :init (setq markdown-command "multimarkdown"))
-)
+  )
+(use-package yaml-mode
+  :mode
+  ("\\.yml'" . yaml-mode)
+ )
+ 
  (defun comment-or-uncomment-region-or-line ()
      "Comments or uncomments the region or the current line if there's no active region."
      (interactive)
