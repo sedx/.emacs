@@ -74,7 +74,7 @@
 
 (use-package rinari
   :config
-  (add-hook 'rinari-minor-mode-hook 'rvm-use-default)
+  (add-hook 'rinari-minor-mode 'rvm-activate-corresponding-ruby)
   (add-hook 'rinari-minor-mode-hook 'robe-mode)
 )
 
@@ -210,6 +210,9 @@
   (add-hook 'ruby-mode-hook
           (lambda () (rvm-activate-corresponding-ruby)))
    )
+
+(use-package pow
+  )
 
 (use-package highlight-indentation
   :config
