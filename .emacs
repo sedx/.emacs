@@ -15,7 +15,7 @@
     ("d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
  '(package-selected-packages
    (quote
-    (chess markdown-mode solarized-theme pomodoro company-flx use-package helm powerline git-gutter helm-dash guide-key-tip rainbow-mode rainbow-delimiters helm-swoop dashboard god-mode helm-projectile helm-company helm-core highlight-indentation rvm robe grizzl rinari neotree projectile magit alchemist elixir-mode))))
+    (yaml-mode pow exec-path-from-shell chess markdown-mode solarized-theme pomodoro company-flx use-package helm powerline git-gutter helm-dash guide-key-tip rainbow-mode rainbow-delimiters helm-swoop dashboard god-mode helm-projectile helm-company helm-core highlight-indentation rvm robe grizzl rinari neotree projectile magit alchemist elixir-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -25,6 +25,14 @@
 
 (global-hl-line-mode)
 (save-place-mode 1)
+
+(when (memq window-system '(mac ns))
+  (use-package exec-path-from-shell
+    :config
+    (exec-path-from-shell-initialize))
+ )
+
+
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
