@@ -117,15 +117,6 @@
   (setq god-exempt-major-modes nil
 	god-exempt-predicates nil)
   :config
-  ; (defun god-mode-update-color ()
-  ;; (let ((limited-colors-p (> 257 (length (defined-colors)))))
-  ;;   (cond (god-local-mode (progn
-  ;;                           (set-face-background 'mode-line (if limited-colors-p "white" "#e9e2cb"))
-  ;;                           (set-face-background 'mode-line-inactive (if limited-colors-p "white" "#e9e2cb"))))
-  ;;         (t (progn
-  ;;              (set-face-background 'mode-line (if limited-colors-p "black" "#0a2832"))
-  ;;              (set-face-background 'mode-line-inactive (if limited-colors-p "black" "#0a2832")))))))
- 
   (add-hook 'god-mode-enabled-hook 'update-hl-color)
   (add-hook 'god-mode-disabled-hook 'update-hl-color)
   :bind
@@ -246,8 +237,17 @@
          (comment-or-uncomment-region beg end)
          (next-line)))
 
+(setq show-paren-style 'mixed)
+(add-hook 'prog-mode-hook 'show-paren-mode)
+
 (global-unset-key (kbd "M-/"))
 (global-set-key (kbd "M-/") 'comment-or-uncomment-region-or-line)
 
 (global-unset-key (kbd "C-s"))
 (global-set-key (kbd "C-s") 'helm-swoop)
+
+(setq frame-title-format
+      '(buffer-file-name "%b - %f" ; File buffer
+        (dired-directory dired-directory ; Dired buffer
+         (revert-buffer-function "%b" ; Buffer Menu
+          ("%b - Dir: " default-directory)))))
